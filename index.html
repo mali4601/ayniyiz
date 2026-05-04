@@ -8,15 +8,19 @@
 <style>
 body{
   margin:0;
-  font-family:Arial;
+  font-family:Arial, sans-serif;
   background:#0f0f1a;
   color:white;
   text-align:center;
 }
 
-.container{padding:20px}
+.container{
+  padding:20px;
+  max-width:400px;
+  margin:auto;
+}
 
-h1{font-size:26px}
+h1{font-size:24px}
 p{color:#bbb}
 
 button{
@@ -28,6 +32,7 @@ button{
   color:#000;
   font-weight:bold;
   margin-top:10px;
+  cursor:pointer;
 }
 
 .option{
@@ -35,6 +40,7 @@ button{
   margin:10px 0;
   padding:12px;
   border-radius:10px;
+  cursor:pointer;
 }
 </style>
 </head>
@@ -80,51 +86,51 @@ const qs=[
 ];
 
 function start(){
-document.querySelector("button").style.display="none";
-document.getElementById("test").style.display="block";
-load();
+  document.querySelector("button").style.display="none";
+  document.getElementById("test").style.display="block";
+  load();
 }
 
 function load(){
-if(i>=qs.length){
-showResult();
-return;
-}
+  if(i>=qs.length){
+    showResult();
+    return;
+  }
 
-document.getElementById("q").innerText=qs[i].q;
+  document.getElementById("q").innerText = qs[i].q;
 
-let html="";
-qs[i].a.forEach(x=>{
-html += <div class="option" onclick="next(${x[1]})">${x[0]}</div>;
-});
+  let html="";
+  qs[i].a.forEach(x=>{
+    html += <div class="option" onclick="next(${x[1]})">${x[0]}</div>;
+  });
 
-document.getElementById("a").innerHTML=html;
+  document.getElementById("a").innerHTML = html;
 }
 
 function next(val){
-score+=val;
-i++;
-load();
+  score += val;
+  i++;
+  load();
 }
 
 function showResult(){
-document.getElementById("test").style.display="none";
-document.getElementById("result").style.display="block";
+  document.getElementById("test").style.display="none";
+  document.getElementById("result").style.display="block";
 
-let type="Sosyal Lider";
-if(score<6) type="Sessiz Gözlemci";
-if(score>8) type="Enerji Kaynağı";
+  let type="Sosyal Lider";
+  if(score<6) type="Sessiz Gözlemci";
+  if(score>8) type="Enerji Kaynağı";
 
-document.getElementById("type").innerText="%"+(70+score)+" "+type;
-document.getElementById("count").innerText="Seninle aynı "+(Math.floor(Math.random()*200)+20)+" kişi var 👀";
+  document.getElementById("type").innerText = "%" + (70 + score) + " " + type;
+  document.getElementById("count").innerText = 
+    "Seninle aynı " + (Math.floor(Math.random()*200)+20) + " kişi var 👀";
 }
 
 function premium(){
-document.getElementById("result").style.display="none";
-document.getElementById("premium").style.display="block";
+  document.getElementById("result").style.display="none";
+  document.getElementById("premium").style.display="block";
 }
 
 </script>
 
 </body>
-</html>
