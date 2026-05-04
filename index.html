@@ -4,106 +4,81 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aynıyız</title>
-
 <style>
-body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:#0f0f1a;
-  color:white;
-  text-align:center;
-}
-
-.container{
-  padding:20px;
-  max-width:400px;
-  margin:auto;
-}
-
-h1{font-size:24px}
-p{color:#bbb}
-
-button{
-  width:100%;
-  padding:15px;
-  border:none;
-  border-radius:10px;
-  background:#ff8a00;
-  color:#000;
-  font-weight:bold;
-  margin-top:10px;
-  cursor:pointer;
-}
-
-.option{
-  background:#1f1f2e;
-  margin:10px 0;
-  padding:12px;
-  border-radius:10px;
-  cursor:pointer;
-}
+body{margin:0;font-family:Arial,sans-serif;background:#0f0f1a;color:white;text-align:center}
+.container{padding:38px 20px;max-width:420px;margin:auto}
+h1{font-size:34px;margin-top:30px}
+p{color:#bbb;font-size:18px}
+button,.option{width:100%;padding:18px;border:none;border-radius:14px;background:#ff8a00;color:#000;font-size:18px;font-weight:bold;margin-top:14px;cursor:pointer}
+.option{background:#1f1f2e;color:white}
+.box{display:none}
 </style>
 </head>
-
 <body>
-
 <div class="container">
+  <div id="home">
+    <h1>Gerçekten aynı mısınız?</h1>
+    <p>Testi çöz, sana benzeyenleri bul</p>
+    <button onclick="start()">Teste Başla</button>
+  </div>
 
-<h1>Gerçekten aynı mısınız?</h1>
-<p>Testi çöz, sana benzeyenleri bul</p>
+  <div id="test" class="box">
+    <p id="progress"></p>
+    <h1 id="q"></h1>
+    <div id="a"></div>
+  </div>
 
-<button onclick="start()">Teste Başla</button>
+  <div id="result" class="box">
+    <h1 id="type"></h1>
+    <p id="count"></p>
+    <button onclick="premium()">Onları Gör</button>
+  </div>
 
-<div id="test" style="display:none">
-  <h2 id="q"></h2>
-  <div id="a"></div>
-</div>
-
-<div id="result" style="display:none">
-  <h2 id="type"></h2>
-  <p id="count"></p>
-  <button onclick="premium()">Onları Gör</button>
-</div>
-
-<div id="premium" style="display:none">
-  <h2>Premium</h2>
-  <p>Bu kişileri görmek için abonelik gerekir</p>
-  <button>7 Gün Ücretsiz Dene</button>
-</div>
-
+  <div id="premium" class="box">
+    <h1>Premium</h1>
+    <p>Sana benzeyen kişileri görmek ve mesajlaşmak için Premium’a geç.</p>
+    <button>7 Gün Ücretsiz Dene</button>
+  </div>
 </div>
 
 <script>
+let i = 0;
+let score = 0;
 
-let i=0;
-let score=0;
-
-const qs=[
-{q:"Yeni ortamda nasılsın?",a:[["Lider",2],["Sessiz",1],["Eğlenceli",3]]},
-{q:"İlk dikkat ettiğin?",a:[["Enerji",3],["Konuşma",2],["Görünüş",1]]},
-{q:"Arkadaş ortamında?",a:[["Organize ederim",3],["Takılırım",2],["Dinlerim",1]]},
-{q:"Mesajlaşmada?",a:[["Hızlı",3],["Normal",2],["Geç",1]]}
+const qs = [
+  {q:"Yeni ortamda nasılsın?", a:[["Lider",2],["Sessiz",1],["Eğlenceli",3]]},
+  {q:"İlk dikkat ettiğin şey?", a:[["Enerji",3],["Konuşma",2],["Görünüş",1]]},
+  {q:"Arkadaş ortamında rolün?", a:[["Organize ederim",3],["Takılırım",2],["Dinlerim",1]]},
+  {q:"Mesajlaşmada nasılsın?", a:[["Hızlı dönerim",3],["Normal",2],["Geç yazarım",1]]},
+  {q:"İlişkide en önemlisi?", a:[["Tutku",3],["Güven",2],["Sakinlik",1]]}
 ];
 
+function hideAll(){
+  document.getElementById("home").style.display="none";
+  document.getElementById("test").style.display="none";
+  document.getElementById("result").style.display="none";
+  document.getElementById("premium").style.display="none";
+}
+
 function start(){
-  document.querySelector("button").style.display="none";
+  hideAll();
   document.getElementById("test").style.display="block";
   load();
 }
 
 function load(){
-  if(i>=qs.length){
+  if(i >= qs.length){
     showResult();
     return;
   }
 
+  document.getElementById("progress").innerText = "Soru " + (i+1) + " / " + qs.length;
   document.getElementById("q").innerText = qs[i].q;
 
-  let html="";
+  let html = "";
   qs[i].a.forEach(x=>{
-    html += <div class="option" onclick="next(${x[1]})">${x[0]}</div>;
+    html += '<div class="option" onclick="next('+x[1]+')">'+x[0]+'</div>';
   });
-
   document.getElementById("a").innerHTML = html;
 }
 
@@ -114,23 +89,22 @@ function next(val){
 }
 
 function showResult(){
-  document.getElementById("test").style.display="none";
+  hideAll();
   document.getElementById("result").style.display="block";
 
-  let type="Sosyal Lider";
-  if(score<6) type="Sessiz Gözlemci";
-  if(score>8) type="Enerji Kaynağı";
+  let type = "Sosyal Lider";
+  if(score <= 7) type = "Sessiz Gözlemci";
+  if(score >= 12) type = "Enerji Kaynağı";
 
   document.getElementById("type").innerText = "%" + (70 + score) + " " + type;
-  document.getElementById("count").innerText = 
-    "Seninle aynı " + (Math.floor(Math.random()*200)+20) + " kişi var 👀";
+  document.getElementById("count").innerText =
+    "Seninle aynı sonucu alan " + (Math.floor(Math.random()*180)+35) + " kişi var 👀";
 }
 
 function premium(){
-  document.getElementById("result").style.display="none";
+  hideAll();
   document.getElementById("premium").style.display="block";
 }
-
 </script>
-
 </body>
+</html>
