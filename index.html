@@ -1,134 +1,490 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Aynıyız</title>
+
 <style>
-body{margin:0;font-family:Arial,sans-serif;background:#0f0f1a;color:white;text-align:center}
-.container{padding:38px 20px;max-width:420px;margin:auto}
-h1{font-size:34px;margin-top:30px}
-p{color:#bbb;font-size:18px}
-button,.option{width:100%;padding:18px;border:none;border-radius:14px;background:#ff8a00;color:#000;font-size:18px;font-weight:bold;margin-top:14px;cursor:pointer}
-.option{background:#1f1f2e;color:white}
-.box{display:none}
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  color:white;
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(255,138,0,.35), transparent 28%),
+    radial-gradient(circle at 85% 20%, rgba(180,60,255,.38), transparent 32%),
+    radial-gradient(circle at 50% 95%, rgba(255,55,130,.25), transparent 35%),
+    linear-gradient(180deg,#12091f,#090912 70%);
+  overflow-x:hidden;
+}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size:42px 42px;
+  mask-image:linear-gradient(to bottom, rgba(0,0,0,.7), transparent);
+  pointer-events:none;
+}
+
+.wrap{
+  max-width:430px;
+  margin:auto;
+  padding:24px 18px 40px;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:24px;
+}
+
+.logoIcon{
+  width:44px;
+  height:44px;
+  border-radius:16px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,#ff8a00,#ff4fb8);
+  color:#111;
+  font-size:28px;
+  font-weight:900;
+  box-shadow:0 0 35px rgba(255,138,0,.5);
+}
+
+.logoText{
+  text-align:left;
+}
+
+.logoText b{
+  font-size:24px;
+  display:block;
+}
+
+.logoText span{
+  font-size:12px;
+  color:#cfc7dd;
+}
+
+.screen{display:none}
+.active{display:block}
+
+.card{
+  background:rgba(255,255,255,.085);
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:30px;
+  padding:24px;
+  box-shadow:
+    0 25px 70px rgba(0,0,0,.45),
+    inset 0 1px 0 rgba(255,255,255,.12);
+  backdrop-filter:blur(18px);
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:9px 14px;
+  border-radius:999px;
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.12);
+  color:#ffd6a0;
+  font-size:13px;
+  margin-bottom:18px;
+}
+
+h1{
+  font-size:42px;
+  line-height:1.02;
+  margin:12px 0;
+  letter-spacing:-1.4px;
+}
+
+h2{
+  font-size:29px;
+  line-height:1.15;
+  margin:10px 0 16px;
+}
+
+p{
+  color:#d8d0e4;
+  font-size:16px;
+  line-height:1.55;
+}
+
+.highlight{
+  color:#ffb347;
+}
+
+.btn{
+  width:100%;
+  padding:18px;
+  border:0;
+  border-radius:18px;
+  margin-top:16px;
+  font-size:17px;
+  font-weight:900;
+  color:#111;
+  background:linear-gradient(135deg,#ff8a00,#ffbd59);
+  box-shadow:0 0 30px rgba(255,138,0,.42);
+  cursor:pointer;
+}
+
+.btn.secondary{
+  color:white;
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:none;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:18px;
+}
+
+.stat{
+  background:rgba(0,0,0,.23);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:18px;
+  padding:13px 8px;
+}
+
+.stat b{
+  display:block;
+  color:#ffb347;
+  font-size:19px;
+}
+
+.stat span{
+  font-size:11px;
+  color:#bcb4ca;
+}
+
+.progressOuter{
+  height:10px;
+  background:rgba(255,255,255,.1);
+  border-radius:99px;
+  overflow:hidden;
+  margin-bottom:18px;
+}
+
+.progressInner{
+  height:100%;
+  background:linear-gradient(90deg,#ff8a00,#ff4fb8);
+  width:0%;
+  border-radius:99px;
+  transition:.25s;
+}
+
+.progressText{
+  color:#ffb347;
+  font-size:14px;
+  font-weight:bold;
+  margin-bottom:8px;
+}
+
+.option{
+  width:100%;
+  padding:16px;
+  margin:10px 0;
+  border-radius:18px;
+  text-align:left;
+  color:white;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.13);
+  cursor:pointer;
+  font-size:16px;
+}
+
+.option:active{
+  transform:scale(.98);
+  border-color:#ff8a00;
+}
+
+.resultBadge{
+  width:96px;
+  height:96px;
+  border-radius:50%;
+  margin:0 auto 18px;
+  display:grid;
+  place-items:center;
+  font-size:42px;
+  background:linear-gradient(135deg,#ff8a00,#ff4fb8);
+  box-shadow:0 0 55px rgba(255,79,184,.45);
+}
+
+.matchCard{
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:14px;
+  border-radius:20px;
+  background:rgba(0,0,0,.25);
+  border:1px solid rgba(255,255,255,.12);
+  margin:12px 0;
+  overflow:hidden;
+}
+
+.matchCard.locked{
+  filter:blur(1.6px);
+  opacity:.75;
+}
+
+.avatar{
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#ff8a00,#9c27ff);
+}
+
+.matchInfo{
+  text-align:left;
+  flex:1;
+}
+
+.matchInfo b{
+  display:block;
+}
+
+.matchInfo span{
+  font-size:12px;
+  color:#c9c1d4;
+}
+
+.lockLayer{
+  position:absolute;
+  inset:auto 16px 16px 16px;
+  padding:14px;
+  border-radius:20px;
+  background:rgba(10,10,18,.78);
+  border:1px solid rgba(255,255,255,.14);
+  backdrop-filter:blur(12px);
+}
+
+input{
+  width:100%;
+  padding:16px;
+  border:0;
+  border-radius:16px;
+  margin:9px 0;
+  background:rgba(255,255,255,.12);
+  color:white;
+  font-size:16px;
+  outline:none;
+}
+
+input::placeholder{color:#c7bfce}
+
+.small{
+  font-size:12px;
+  color:#aaa1b7;
+}
+
+.glowText{
+  text-shadow:0 0 20px rgba(255,138,0,.5);
+}
 </style>
 </head>
+
 <body>
-<div class="container">
-  <div id="home">
-    <h1>Gerçekten aynı mısınız?</h1>
-    <p>Testi çöz, sana benzeyenleri bul</p>
-    <button onclick="start()">Teste Başla</button>
+<div class="wrap">
+
+  <div class="logo">
+    <div class="logoIcon">=</div>
+    <div class="logoText">
+      <b>Aynıyız</b>
+      <span>Senin gibi olanları bul</span>
+    </div>
   </div>
 
-  <div id="test" class="box">
-    <p id="progress"></p>
-    <h1 id="q"></h1>
-    <div id="a"></div>
+  <div id="home" class="screen active">
+    <div class="card">
+      <div class="badge">🔥 Yeni nesil test + eşleşme platformu</div>
+      <h1>Gerçekten <span class="highlight">aynı</span> mısınız?</h1>
+      <p>15 soruluk kısa testi çöz. Karakter tipini öğren, sana benzeyen insanları keşfet.</p>
+
+      <button class="btn" onclick="startTest()">Teste Başla</button>
+
+      <div class="stats">
+        <div class="stat"><b>15</b><span>soru</span></div>
+        <div class="stat"><b>%92</b><span>uyum</span></div>
+        <div class="stat"><b>147</b><span>eşleşme</span></div>
+      </div>
+
+      <p class="small">Sonucunu arkadaşlarınla karşılaştırabilirsin.</p>
+    </div>
   </div>
 
-  <div id="result" class="box">
-    <h1 id="type"></h1>
-    <p id="count"></p>
-    <button onclick="premium()">Onları Gör</button>
+  <div id="test" class="screen">
+    <div class="card">
+      <div id="progressText" class="progressText"></div>
+      <div class="progressOuter">
+        <div id="progressInner" class="progressInner"></div>
+      </div>
+      <h2 id="question"></h2>
+      <div id="answers"></div>
+    </div>
   </div>
 
-  <div id="premium" class="box">
-    <h1>Premium</h1>
-    <p>Sana benzeyen kişileri görmek ve mesajlaşmak için Premium’a geç.</p>
-    <button>7 Gün Ücretsiz Dene</button>
+  <div id="result" class="screen">
+    <div class="card">
+      <div class="resultBadge">🔥</div>
+      <h2 id="resultTitle" class="glowText"></h2>
+      <p id="resultText"></p>
+      <p id="matchCount"></p>
+      <button class="btn" onclick="showMatches()">Eşleşmeleri Gör</button>
+    </div>
   </div>
+
+  <div id="matches" class="screen">
+    <div class="card">
+      <h2>Sana benzeyen kişiler bulundu 👀</h2>
+      <p>En yüksek uyumlu profiller hazırlandı.</p>
+
+      <div class="matchCard locked">
+        <div class="avatar"></div>
+        <div class="matchInfo"><b>Ayşe</b><span>%94 uyum • İstanbul</span></div>
+      </div>
+
+      <div class="matchCard locked">
+        <div class="avatar"></div>
+        <div class="matchInfo"><b>Mert</b><span>%91 uyum • Ankara</span></div>
+      </div>
+
+      <div class="matchCard locked">
+        <div class="avatar"></div>
+        <div class="matchInfo"><b>Elif</b><span>%88 uyum • İzmir</span></div>
+      </div>
+
+      <div class="lockLayer">
+        <b>Profiller kilitli 🔒</b>
+        <p class="small">Devam etmek için ücretsiz hesap oluştur.</p>
+      </div>
+
+      <button class="btn" onclick="showRegister()">Profilleri Aç</button>
+    </div>
+  </div>
+
+  <div id="register" class="screen">
+    <div class="card">
+      <h2>Hesap Oluştur</h2>
+      <p>Sonucunu kaydetmek ve eşleşmelerini görmek için kayıt ol.</p>
+
+      <input placeholder="E-mail">
+      <input placeholder="Şifre" type="password">
+
+      <button class="btn" onclick="showPremium()">Devam Et</button>
+      <button class="btn secondary" onclick="showPremium()">Google ile devam et</button>
+    </div>
+  </div>
+
+  <div id="premium" class="screen">
+    <div class="card">
+      <div class="resultBadge">💎</div>
+      <h2>Premium Kilidi Aç</h2>
+      <p>🔥 Sana en uygun profilleri gör, mesajlaş ve en yüksek uyumlu kişileri keşfet.</p>
+      <button class="btn">7 Gün Ücretsiz Dene</button>
+      <p class="small">Sonra 50 TL / ay</p>
+    </div>
+  </div>
+
 </div>
 
 <script>
-let i = 0;
+let current = 0;
 let score = 0;
 
-const const qs = [
-{q:"Yeni bir ortama girdiğinde nasılsın?", a:[["Hemen ortama girerim",3],["Ortamı izlerim",2],["Geri planda kalırım",1]]},
-
-{q:"İnsanlarda ilk dikkat ettiğin şey?", a:[["Enerji",3],["Konuşma tarzı",2],["Görünüş",1]]},
-
-{q:"Arkadaş grubunda rolün nedir?", a:[["Liderim",3],["Dengeleyiciyim",2],["Dinleyenim",1]]},
-
-{q:"Boş zamanlarını nasıl geçirirsin?", a:[["Sosyal ortam",3],["Karışık",2],["Tek başıma",1]]},
-
-{q:"Mesajlaşma alışkanlığın?", a:[["Hızlı cevap",3],["Normal",2],["Geç cevap",1]]},
-
-{q:"İlişkide en önemli şey?", a:[["Tutku",3],["Güven",2],["Sakinlik",1]]},
-
-{q:"Risk alır mısın?", a:[["Evet",3],["Duruma göre",2],["Hayır",1]]},
-
-{q:"Tanımadığın biriyle sohbet?", a:[["Hemen başlarım",3],["Zamanla",2],["Zorlanırım",1]]},
-
-{q:"Duygularını ifade etme şeklin?", a:[["Açık",3],["Bazen",2],["İçe atarım",1]]},
-
-{q:"Kalabalık ortamlar?", a:[["Enerji verir",3],["Nötr",2],["Yorar",1]]},
-
-{q:"Birini tanırken en çok neye bakarsın?", a:[["Karakter",3],["Uyum",2],["Dış görünüş",1]]},
-
-{q:"Sosyal medyada nasılsın?", a:[["Aktifim",3],["Ara sıra",2],["Pasifim",1]]},
-
-{q:"Karar verirken?", a:[["Hızlı",3],["Düşünerek",2],["Çok zor",1]]},
-
-{q:"Flört ederken?", a:[["Cesurum",3],["Orta",2],["Çekingenim",1]]},
-
-{q:"Hayata bakışın?", a:[["Enerjik",3],["Dengeli",2],["Sakin",1]]}
+const questions = [
+  {q:"Yeni bir ortama girdiğinde nasılsın?", a:[["Hemen ortama girerim",3],["Önce izlerim",2],["Geri planda kalırım",1]]},
+  {q:"İnsanlarda ilk dikkat ettiğin şey?", a:[["Enerji",3],["Konuşma tarzı",2],["Görünüş",1]]},
+  {q:"Arkadaş grubunda rolün nedir?", a:[["Liderim",3],["Dengeleyiciyim",2],["Dinleyenim",1]]},
+  {q:"Boş zamanlarını nasıl geçirirsin?", a:[["Sosyal ortamda",3],["Duruma göre",2],["Tek başıma",1]]},
+  {q:"Mesajlaşma alışkanlığın?", a:[["Hızlı cevap veririm",3],["Normal",2],["Geç cevap veririm",1]]},
+  {q:"İlişkide en önemli şey?", a:[["Tutku",3],["Güven",2],["Sakinlik",1]]},
+  {q:"Risk alır mısın?", a:[["Evet",3],["Duruma göre",2],["Hayır",1]]},
+  {q:"Tanımadığın biriyle sohbet eder misin?", a:[["Hemen başlarım",3],["Zamanla açılırım",2],["Zorlanırım",1]]},
+  {q:"Duygularını nasıl ifade edersin?", a:[["Açıkça",3],["Bazen",2],["İçime atarım",1]]},
+  {q:"Kalabalık ortamlar sana ne hissettirir?", a:[["Enerji verir",3],["Nötrüm",2],["Yorar",1]]},
+  {q:"Birini tanırken en çok neye bakarsın?", a:[["Karakter",3],["Uyum",2],["Dış görünüş",1]]},
+  {q:"Sosyal medyada nasılsın?", a:[["Aktifim",3],["Ara sıra",2],["Pasifim",1]]},
+  {q:"Karar verirken nasılsın?", a:[["Hızlı karar veririm",3],["Düşünürüm",2],["Çok zorlanırım",1]]},
+  {q:"Flört ederken nasılsın?", a:[["Cesurum",3],["Dengeliyim",2],["Çekingenim",1]]},
+  {q:"Hayata bakışın hangisine yakın?", a:[["Enerjik",3],["Dengeli",2],["Sakin",1]]}
 ];
 
-function hideAll(){
-  document.getElementById("home").style.display="none";
-  document.getElementById("test").style.display="none";
-  document.getElementById("result").style.display="none";
-  document.getElementById("premium").style.display="none";
+function show(id){
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
 }
 
-function start(){
-  hideAll();
-  document.getElementById("test").style.display="block";
-  load();
+function startTest(){
+  current = 0;
+  score = 0;
+  show("test");
+  loadQuestion();
 }
 
-function load(){
-  if(i >= qs.length){
+function loadQuestion(){
+  if(current >= questions.length){
     showResult();
     return;
   }
 
-  document.getElementById("progress").innerText = "Soru " + (i+1) + " / " + qs.length;
-  document.getElementById("q").innerText = qs[i].q;
+  document.getElementById("progressText").innerText = "Soru " + (current + 1) + " / " + questions.length;
+  document.getElementById("progressInner").style.width = ((current + 1) / questions.length * 100) + "%";
+  document.getElementById("question").innerText = questions[current].q;
 
   let html = "";
-  qs[i].a.forEach(x=>{
-    html += '<div class="option" onclick="next('+x[1]+')">'+x[0]+'</div>';
+  questions[current].a.forEach(answer => {
+    html += '<div class="option" onclick="selectAnswer(' + answer[1] + ')">' + answer[0] + '</div>';
   });
-  document.getElementById("a").innerHTML = html;
+
+  document.getElementById("answers").innerHTML = html;
 }
 
-function next(val){
-  score += val;
-  i++;
-  load();
+function selectAnswer(value){
+  score += value;
+  current++;
+  loadQuestion();
 }
 
 function showResult(){
-  hideAll();
-  document.getElementById("result").style.display="block";
+  let title = "";
+  let text = "";
 
-  let type = "Sosyal Lider";
-  if(score <= 7) type = "Sessiz Gözlemci";
-  if(score >= 15) type = "Enerji Kaynağı";
+  if(score <= 24){
+    title = "%" + (60 + score) + " Sessiz Gözlemci";
+    text = "Sen sakin, derin düşünen ve insanları dikkatle analiz eden bir yapıdasın.";
+  } else if(score <= 35){
+    title = "%" + (55 + score) + " Dengeli Karakter";
+    text = "Sen sosyal ve sakin tarafı dengede tutan, güven veren bir karakterdesin.";
+  } else {
+    title = "%" + (50 + score) + " Enerji Kaynağı";
+    text = "Sen bulunduğun ortama hareket katan, dikkat çeken ve insanları çeken bir yapıdasın.";
+  }
 
-  document.getElementById("type").innerText = "%" + (70 + score) + " " + type;
-  document.getElementById("count").innerText =
-    "Seninle aynı sonucu alan " + (Math.floor(Math.random()*180)+35) + " kişi var 👀";
+  document.getElementById("resultTitle").innerText = title;
+  document.getElementById("resultText").innerText = text;
+  document.getElementById("matchCount").innerText =
+    "Son 24 saatte seninle aynı sonucu alan " + (Math.floor(Math.random() * 240) + 80) + " kişi bulundu 👀";
+
+  show("result");
 }
 
-function premium(){
-  hideAll();
-  document.getElementById("premium").style.display="block";
-}
+function showMatches(){ show("matches"); }
+function showRegister(){ show("register"); }
+function showPremium(){ show("premium"); }
 </script>
+
 </body>
 </html>
