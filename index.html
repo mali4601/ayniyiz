@@ -45,12 +45,36 @@ button,.option{width:100%;padding:18px;border:none;border-radius:14px;background
 let i = 0;
 let score = 0;
 
-const qs = [
-  {q:"Yeni ortamda nasılsın?", a:[["Lider",2],["Sessiz",1],["Eğlenceli",3]]},
-  {q:"İlk dikkat ettiğin şey?", a:[["Enerji",3],["Konuşma",2],["Görünüş",1]]},
-  {q:"Arkadaş ortamında rolün?", a:[["Organize ederim",3],["Takılırım",2],["Dinlerim",1]]},
-  {q:"Mesajlaşmada nasılsın?", a:[["Hızlı dönerim",3],["Normal",2],["Geç yazarım",1]]},
-  {q:"İlişkide en önemlisi?", a:[["Tutku",3],["Güven",2],["Sakinlik",1]]}
+const const qs = [
+{q:"Yeni bir ortama girdiğinde nasılsın?", a:[["Hemen ortama girerim",3],["Ortamı izlerim",2],["Geri planda kalırım",1]]},
+
+{q:"İnsanlarda ilk dikkat ettiğin şey?", a:[["Enerji",3],["Konuşma tarzı",2],["Görünüş",1]]},
+
+{q:"Arkadaş grubunda rolün nedir?", a:[["Liderim",3],["Dengeleyiciyim",2],["Dinleyenim",1]]},
+
+{q:"Boş zamanlarını nasıl geçirirsin?", a:[["Sosyal ortam",3],["Karışık",2],["Tek başıma",1]]},
+
+{q:"Mesajlaşma alışkanlığın?", a:[["Hızlı cevap",3],["Normal",2],["Geç cevap",1]]},
+
+{q:"İlişkide en önemli şey?", a:[["Tutku",3],["Güven",2],["Sakinlik",1]]},
+
+{q:"Risk alır mısın?", a:[["Evet",3],["Duruma göre",2],["Hayır",1]]},
+
+{q:"Tanımadığın biriyle sohbet?", a:[["Hemen başlarım",3],["Zamanla",2],["Zorlanırım",1]]},
+
+{q:"Duygularını ifade etme şeklin?", a:[["Açık",3],["Bazen",2],["İçe atarım",1]]},
+
+{q:"Kalabalık ortamlar?", a:[["Enerji verir",3],["Nötr",2],["Yorar",1]]},
+
+{q:"Birini tanırken en çok neye bakarsın?", a:[["Karakter",3],["Uyum",2],["Dış görünüş",1]]},
+
+{q:"Sosyal medyada nasılsın?", a:[["Aktifim",3],["Ara sıra",2],["Pasifim",1]]},
+
+{q:"Karar verirken?", a:[["Hızlı",3],["Düşünerek",2],["Çok zor",1]]},
+
+{q:"Flört ederken?", a:[["Cesurum",3],["Orta",2],["Çekingenim",1]]},
+
+{q:"Hayata bakışın?", a:[["Enerjik",3],["Dengeli",2],["Sakin",1]]}
 ];
 
 function hideAll(){
@@ -94,7 +118,7 @@ function showResult(){
 
   let type = "Sosyal Lider";
   if(score <= 7) type = "Sessiz Gözlemci";
-  if(score >= 12) type = "Enerji Kaynağı";
+  if(score >= 15) type = "Enerji Kaynağı";
 
   document.getElementById("type").innerText = "%" + (70 + score) + " " + type;
   document.getElementById("count").innerText =
