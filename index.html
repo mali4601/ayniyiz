@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aynıyız</title>
 
 <style>
@@ -13,384 +13,342 @@ padding:0;
 box-sizing:border-box;
 }
 
-:root{
---bg:#070812;
---glass:rgba(255,255,255,.07);
---border:rgba(255,255,255,.12);
---pink:#ff2f9f;
---pink2:#ff6bc8;
---purple:#7a35ff;
---white:#ffffff;
---text:#cfc7dd;
-}
-
 body{
 font-family:Arial,sans-serif;
 background:
-radial-gradient(circle at 10% 10%,rgba(255,47,159,.25),transparent 25%),
-radial-gradient(circle at 90% 20%,rgba(122,53,255,.25),transparent 30%),
-linear-gradient(180deg,#13061f,#070812 80%);
-min-height:100vh;
+radial-gradient(circle at top left,#3d0b4f 0%,transparent 30%),
+radial-gradient(circle at top right,#27114f 0%,transparent 30%),
+#070812;
 color:white;
 overflow-x:hidden;
+min-height:100vh;
 }
 
 body::before{
 content:"";
 position:fixed;
 inset:0;
-pointer-events:none;
 
 background-image:
 linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
 linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
 
 background-size:40px 40px;
-opacity:.4;
-}
 
-body::after{
-content:"";
-position:fixed;
-width:700px;
-height:700px;
-top:-250px;
-right:-250px;
-background:rgba(255,47,159,.15);
-filter:blur(140px);
 pointer-events:none;
 }
 
 .app{
-max-width:1280px;
-margin:auto;
+display:grid;
+grid-template-columns:260px 1fr 320px;
+gap:20px;
+
 padding:22px;
-position:relative;
-z-index:1;
+max-width:1500px;
+margin:auto;
 }
 
+/* GLASS */
+
 .glass{
-background:var(--glass);
-border:1px solid var(--border);
+background:rgba(255,255,255,.06);
+border:1px solid rgba(255,255,255,.12);
 backdrop-filter:blur(18px);
 border-radius:28px;
 
 box-shadow:
-0 25px 80px rgba(0,0,0,.45),
-inset 0 1px 0 rgba(255,255,255,.12);
-}
-
-/* TOP */
-
-.top{
-display:flex;
-align-items:center;
-justify-content:space-between;
-margin-bottom:24px;
-}
-
-.logo{
-display:flex;
-align-items:center;
-gap:14px;
-}
-
-.logoMark{
-width:72px;
-height:72px;
-border-radius:24px;
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-background:
-linear-gradient(
-145deg,
-rgba(255,255,255,.10),
-rgba(255,255,255,.03)
-);
-
-border:1px solid rgba(255,255,255,.16);
-
-backdrop-filter:blur(18px);
-
-box-shadow:
-0 0 18px rgba(255,47,159,.55),
-0 0 38px rgba(122,53,255,.35),
-inset 0 0 22px rgba(255,255,255,.12);
-
-position:relative;
-overflow:hidden;
-}
-
-.logoMark:before{
-content:"";
-
-position:absolute;
-
-width:120%;
-height:120%;
-
-background:
-radial-gradient(
-circle,
-rgba(255,255,255,.22),
-transparent 60%
-);
-
-top:-40%;
-left:-30%;
-
-transform:rotate(15deg);
-}
-
-.logoMark svg{
-width:46px;
-height:46px;
-
-stroke:url(#logoGrad);
-fill:none;
-
-stroke-width:5;
-
-stroke-linecap:round;
-stroke-linejoin:round;
-
-filter:
-drop-shadow(0 0 6px rgba(255,79,195,.9))
-drop-shadow(0 0 14px rgba(180,76,255,.7))
-drop-shadow(0 0 28px rgba(108,53,255,.5));
-}
-
-.logoText{
-display:flex;
-flex-direction:column;
-
-line-height:1;
-}
-
-.logoText{
-font-size:38px;
-font-weight:900;
-letter-spacing:-2px;
-}
-
-.logoText span{
-color:#ff5fbd;
-
-text-shadow:
-0 0 10px rgba(255,95,189,.7),
-0 0 24px rgba(180,76,255,.5);
-}
-
-.logoText small{
-margin-top:10px;
-
-font-size:11px;
-
-letter-spacing:3px;
-
-font-weight:600;
-
-color:#aaa0bb;
-}
-
-.search{
-width:330px;
-padding:15px 18px;
-border-radius:16px;
-border:1px solid rgba(255,255,255,.14);
-background:rgba(255,255,255,.07);
-color:white;
-outline:none;
-}
-
-.nav{
-display:flex;
-gap:10px;
-}
-
-.nav button,
-.btn{
-padding:15px 22px;
-border-radius:16px;
-border:none;
-cursor:pointer;
-font-weight:800;
-color:white;
-
-background:
-linear-gradient(
-135deg,
-var(--pink),
-var(--purple)
-);
-
-box-shadow:
-0 0 25px rgba(255,47,159,.35);
-}
-
-.nav button:first-child{
-background:rgba(255,255,255,.08);
-border:1px solid rgba(255,255,255,.12);
-}
-
-/* LAYOUT */
-
-.layout{
-display:grid;
-grid-template-columns:230px 1fr 320px;
-gap:18px;
+0 0 35px rgba(255,47,159,.10),
+inset 0 1px 0 rgba(255,255,255,.06);
 }
 
 /* LEFT */
 
 .sidebar{
-padding:18px;
-height:calc(100vh - 100px);
+padding:20px;
+height:calc(100vh - 44px);
 position:sticky;
-top:20px;
+top:22px;
+}
+
+/* BRAND */
+
+.brandBlock{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:10px;
+margin-bottom:34px;
+}
+
+.brandIcon{
+width:180px;
+height:160px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+position:relative;
+}
+
+.brandIcon::before{
+content:"";
+position:absolute;
+
+width:210px;
+height:210px;
+
+border-radius:50%;
+
+background:rgba(255,47,159,.18);
+
+filter:blur(55px);
+}
+
+.brandIcon svg{
+width:145px;
+height:145px;
+
+stroke:url(#brandGrad);
+fill:none;
+
+stroke-width:6;
+
+stroke-linecap:round;
+stroke-linejoin:round;
+
+position:relative;
+z-index:2;
+
+filter:
+drop-shadow(0 0 8px rgba(255,79,195,.9))
+drop-shadow(0 0 20px rgba(180,76,255,.8))
+drop-shadow(0 0 38px rgba(108,53,255,.6));
+}
+
+.brandName{
+font-size:68px;
+font-weight:900;
+letter-spacing:-5px;
+line-height:.9;
+}
+
+.brandName span{
+color:#ff63c2;
+
+text-shadow:
+0 0 12px rgba(255,99,194,.8),
+0 0 24px rgba(180,76,255,.5);
+}
+
+.brandTag{
+font-size:11px;
+letter-spacing:4px;
+color:#a7a0bb;
+font-weight:700;
+}
+
+/* MENU */
+
+.menu{
+margin-top:25px;
 }
 
 .menuItem{
 display:flex;
 align-items:center;
-gap:12px;
+gap:14px;
 
-padding:14px;
-border-radius:18px;
+padding:16px;
 
-margin-bottom:8px;
+border-radius:20px;
 
-color:#ddd;
+margin-bottom:10px;
+
+cursor:pointer;
 
 transition:.25s;
-position:relative;
+
+color:#ddd;
 }
 
 .menuItem:hover{
-background:rgba(255,47,159,.12);
-box-shadow:0 0 22px rgba(255,47,159,.18);
+background:rgba(255,47,159,.10);
+
+box-shadow:
+0 0 18px rgba(255,47,159,.18);
 }
 
 .menuItem.active{
 background:
 linear-gradient(
 135deg,
-rgba(122,53,255,.8),
-rgba(255,47,159,.8)
+rgba(122,53,255,.42),
+rgba(255,47,159,.42)
 );
 
-box-shadow:
-0 0 28px rgba(255,47,159,.35);
-}
-
-.menuItem.active::before{
-content:"";
-position:absolute;
-left:-8px;
-top:10px;
-bottom:10px;
-width:4px;
-border-radius:999px;
-
-background:var(--pink2);
+border:1px solid rgba(255,255,255,.12);
 
 box-shadow:
-0 0 16px var(--pink2);
+0 0 22px rgba(255,47,159,.18),
+inset 0 0 12px rgba(255,255,255,.04);
 }
 
 .menuIcon{
-width:36px;
-height:36px;
+width:44px;
+height:44px;
 
-border-radius:14px;
+border-radius:16px;
 
 display:flex;
 align-items:center;
 justify-content:center;
 
-background:rgba(255,255,255,.08);
+background:
+linear-gradient(
+135deg,
+rgba(255,47,159,.8),
+rgba(122,53,255,.7)
+);
+
+font-size:20px;
+
+box-shadow:
+0 0 20px rgba(255,47,159,.28);
+}
+
+/* CENTER */
+
+.center{
+display:flex;
+flex-direction:column;
+gap:20px;
+}
+
+/* TOPBAR */
+
+.topbar{
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+padding:18px 24px;
+}
+
+.search{
+width:340px;
+padding:15px 18px;
+
+border-radius:18px;
+
+background:rgba(255,255,255,.06);
 
 border:1px solid rgba(255,255,255,.12);
 
-color:#ff8cd7;
+color:white;
 
-font-size:18px;
+outline:none;
+}
+
+.topButtons{
+display:flex;
+gap:12px;
+}
+
+.btn{
+padding:14px 22px;
+
+border:none;
+border-radius:18px;
+
+cursor:pointer;
+
+font-weight:800;
+color:white;
+
+background:
+linear-gradient(
+135deg,
+#ff2f9f,
+#7a35ff
+);
 
 box-shadow:
-inset 0 0 18px rgba(255,47,159,.18),
-0 0 18px rgba(255,47,159,.12);
+0 0 20px rgba(255,47,159,.32);
 }
 
 /* HERO */
 
 .hero{
 padding:36px;
-min-height:340px;
 
 display:grid;
-grid-template-columns:1.1fr .9fr;
+grid-template-columns:1fr 380px;
 gap:20px;
 
-align-items:center;
+min-height:350px;
 
-overflow:hidden;
 position:relative;
+overflow:hidden;
 }
 
 .hero::before{
 content:"";
 position:absolute;
 
-width:450px;
-height:450px;
-
-right:-80px;
+right:-120px;
 top:-120px;
 
-background:rgba(255,47,159,.14);
+width:420px;
+height:420px;
+
+background:rgba(255,47,159,.12);
 
 filter:blur(90px);
 }
 
-.hero h1{
-font-size:56px;
-line-height:1.02;
-letter-spacing:-2px;
-margin-bottom:18px;
+.heroText{
 position:relative;
 z-index:2;
 }
 
-.hero h1 span{
-color:var(--pink2);
+.heroText h1{
+font-size:74px;
+line-height:.92;
+letter-spacing:-4px;
+
+margin-bottom:20px;
+}
+
+.heroText h1 span{
+color:#ff63c2;
 
 text-shadow:
-0 0 24px rgba(255,47,159,.55);
+0 0 22px rgba(255,99,194,.7);
 }
 
-.hero p{
-color:var(--text);
+.heroText p{
 font-size:18px;
-line-height:1.6;
-max-width:480px;
+line-height:1.7;
+
+max-width:520px;
+
+color:#beb7cc;
+
 margin-bottom:24px;
-position:relative;
-z-index:2;
 }
 
 .heroVisual{
-position:relative;
 display:flex;
 align-items:center;
 justify-content:center;
+position:relative;
 }
 
-.brainOrb{
-width:260px;
-height:260px;
+.orb{
+width:280px;
+height:280px;
 
 border-radius:50%;
 
@@ -399,14 +357,13 @@ align-items:center;
 justify-content:center;
 
 background:
-radial-gradient(circle at 35% 30%,#ff8fe0,#b64dff 38%,#331054 68%,#10071c 78%);
+radial-gradient(circle at 35% 30%,#ff8fe0,#b84cff 38%,#321054 70%,#10071d 80%);
 
 box-shadow:
-0 0 90px rgba(184,70,255,.6),
-inset 0 0 45px rgba(255,255,255,.14);
+0 0 90px rgba(180,76,255,.55);
 }
 
-.brainOrb svg{
+.orb svg{
 width:120px;
 height:120px;
 
@@ -415,8 +372,8 @@ fill:none;
 stroke-width:2.8;
 
 filter:
-drop-shadow(0 0 12px rgba(255,255,255,.6))
-drop-shadow(0 0 25px rgba(255,47,159,.6));
+drop-shadow(0 0 10px rgba(255,255,255,.6))
+drop-shadow(0 0 24px rgba(255,47,159,.7));
 }
 
 .float{
@@ -433,38 +390,38 @@ justify-content:center;
 
 background:rgba(255,255,255,.08);
 
-border:1px solid rgba(255,255,255,.14);
+border:1px solid rgba(255,255,255,.12);
 
-backdrop-filter:blur(12px);
+backdrop-filter:blur(14px);
+
+font-size:24px;
 
 box-shadow:
-0 0 26px rgba(255,47,159,.24);
-
-font-size:22px;
-color:#ff8bd5;
+0 0 22px rgba(255,47,159,.22);
 }
 
-.f1{left:10px;top:30px}
-.f2{right:10px;top:40px}
-.f3{left:20px;bottom:30px}
-.f4{right:20px;bottom:35px}
+.f1{left:20px;top:30px}
+.f2{right:20px;top:40px}
+.f3{left:35px;bottom:35px}
+.f4{right:30px;bottom:40px}
 
-/* SECTION */
+/* SECTIONS */
 
-.sectionHead{
+.sectionTitle{
 display:flex;
 align-items:center;
 justify-content:space-between;
 
-margin:25px 0 14px;
+margin-bottom:14px;
 }
 
-.sectionHead h2{
-font-size:24px;
+.sectionTitle h2{
+font-size:26px;
 }
 
-.sectionHead span{
-color:#ff74cd;
+.sectionTitle span{
+color:#ff71cc;
+cursor:pointer;
 }
 
 /* CATEGORIES */
@@ -472,52 +429,53 @@ color:#ff74cd;
 .categories{
 display:grid;
 grid-template-columns:repeat(6,1fr);
-gap:12px;
+gap:14px;
 }
 
-.cat{
-padding:18px 10px;
+.category{
+padding:18px 12px;
+
 text-align:center;
 
-border-radius:22px;
+border-radius:24px;
 
-background:rgba(255,255,255,.07);
+background:rgba(255,255,255,.05);
 
-border:1px solid rgba(255,255,255,.12);
+border:1px solid rgba(255,255,255,.10);
 
 transition:.25s;
 }
 
-.cat:hover{
+.category:hover{
 transform:translateY(-4px);
 
 box-shadow:
-0 0 28px rgba(255,47,159,.24);
+0 0 28px rgba(255,47,159,.18);
 }
 
-.catIcon{
-width:54px;
-height:54px;
+.categoryIcon{
+width:64px;
+height:64px;
 
 margin:auto auto 12px;
 
-border-radius:18px;
+border-radius:20px;
 
 display:flex;
 align-items:center;
 justify-content:center;
 
+font-size:28px;
+
 background:
 linear-gradient(
 135deg,
-rgba(255,47,159,.9),
-rgba(122,53,255,.8)
+rgba(255,47,159,.85),
+rgba(122,53,255,.75)
 );
 
 box-shadow:
-0 0 24px rgba(255,47,159,.34);
-
-font-size:24px;
+0 0 24px rgba(255,47,159,.28);
 }
 
 /* TESTS */
@@ -525,33 +483,30 @@ font-size:24px;
 .tests{
 display:grid;
 grid-template-columns:repeat(4,1fr);
-gap:14px;
+gap:16px;
 }
 
 .test{
 overflow:hidden;
 
-border-radius:26px;
+border-radius:28px;
 
-background:rgba(255,255,255,.07);
+background:rgba(255,255,255,.05);
 
-border:1px solid rgba(255,255,255,.12);
+border:1px solid rgba(255,255,255,.10);
 
-transition:.28s;
+transition:.25s;
 }
 
 .test:hover{
 transform:translateY(-5px);
 
 box-shadow:
-0 0 34px rgba(255,47,159,.22);
-
-border-color:
-rgba(255,95,189,.5);
+0 0 34px rgba(255,47,159,.20);
 }
 
-.testImg{
-height:140px;
+.testTop{
+height:150px;
 
 display:flex;
 align-items:center;
@@ -560,98 +515,84 @@ justify-content:center;
 position:relative;
 
 background:
-radial-gradient(circle at 40% 30%,rgba(255,95,189,.85),rgba(122,53,255,.45) 48%,rgba(9,8,18,.92) 80%);
+radial-gradient(circle at 35% 25%,rgba(255,95,189,.9),rgba(122,53,255,.45) 50%,rgba(10,8,18,.95) 80%);
 }
 
-.testImg::after{
+.testTop::after{
 content:"";
 position:absolute;
 inset:18px;
 
-border-radius:22px;
+border-radius:24px;
 
-border:1px solid rgba(255,255,255,.12);
-
-box-shadow:
-inset 0 0 34px rgba(255,47,159,.2);
+border:1px solid rgba(255,255,255,.10);
 }
 
 .testIcon{
-font-size:58px;
+font-size:60px;
+
 position:relative;
 z-index:2;
 
 filter:
-drop-shadow(0 0 18px rgba(255,255,255,.45))
-drop-shadow(0 0 24px rgba(255,47,159,.6));
+drop-shadow(0 0 16px rgba(255,255,255,.5))
+drop-shadow(0 0 26px rgba(255,47,159,.6));
 }
 
 .testBody{
-padding:16px;
+padding:18px;
 }
 
-.testBody b{
-display:block;
+.testBody h3{
 margin-bottom:8px;
 }
 
 .testBody p{
-font-size:13px;
-color:#bfb4cc;
-line-height:1.5;
+font-size:14px;
+line-height:1.6;
+color:#beb7cc;
+margin-bottom:16px;
 }
 
 .price{
 font-size:24px;
 font-weight:900;
-
-margin:14px 0;
-
 color:#ff6dc9;
-}
 
-.test button{
-width:100%;
-padding:14px;
-border:none;
-border-radius:16px;
-cursor:pointer;
-font-weight:800;
-color:white;
-
-background:
-linear-gradient(
-135deg,
-var(--pink),
-var(--purple)
-);
+margin-bottom:16px;
 }
 
 /* RIGHT */
 
 .right{
-padding:18px;
+padding:20px;
+height:fit-content;
 }
 
-.pop{
+.liveTitle{
+font-size:28px;
+margin-bottom:18px;
+}
+
+.liveItem{
 display:flex;
-gap:12px;
 align-items:center;
+gap:12px;
 
-padding:12px;
+padding:14px;
 
-border-radius:18px;
+border-radius:20px;
+
+background:rgba(255,255,255,.05);
+
+border:1px solid rgba(255,255,255,.10);
 
 margin-bottom:12px;
-
-background:rgba(255,255,255,.06);
-
-border:1px solid rgba(255,255,255,.1);
 }
 
-.thumb{
-width:60px;
-height:60px;
+.liveAvatar{
+width:54px;
+height:54px;
 
 border-radius:18px;
 
@@ -662,62 +603,27 @@ justify-content:center;
 background:
 linear-gradient(
 135deg,
-var(--pink),
-var(--purple)
+#ff2f9f,
+#7a35ff
 );
 
-box-shadow:
-0 0 20px rgba(255,47,159,.3);
-
-font-size:26px;
+font-size:22px;
 }
 
-.live{
-margin-top:18px;
-
-padding:16px;
-
-border-radius:22px;
-
-background:rgba(255,255,255,.06);
-
-border:1px solid rgba(255,255,255,.1);
+.liveText small{
+color:#beb7cc;
 }
 
-.liveRow{
-display:flex;
-align-items:center;
-gap:10px;
+/* MOBILE */
 
-margin:14px 0;
-}
+@media(max-width:1200px){
 
-.avatar{
-width:34px;
-height:34px;
-
-border-radius:50%;
-
-background:
-linear-gradient(
-135deg,
-var(--pink),
-var(--purple)
-);
-
-box-shadow:
-0 0 18px rgba(255,47,159,.34);
-}
-
-@media(max-width:1000px){
-
-.layout{
+.app{
 grid-template-columns:1fr;
 }
 
 .sidebar,
-.right,
-.search{
+.right{
 display:none;
 }
 
@@ -733,13 +639,13 @@ grid-template-columns:repeat(3,1fr);
 grid-template-columns:repeat(2,1fr);
 }
 
-.hero h1{
-font-size:42px;
 }
 
-}
+@media(max-width:700px){
 
-@media(max-width:600px){
+.heroText h1{
+font-size:48px;
+}
 
 .tests{
 grid-template-columns:1fr;
@@ -749,8 +655,8 @@ grid-template-columns:1fr;
 grid-template-columns:repeat(2,1fr);
 }
 
-.hero h1{
-font-size:36px;
+.search{
+display:none;
 }
 
 }
@@ -762,63 +668,58 @@ font-size:36px;
 
 <div class="app">
 
-<div class="top">
+<!-- LEFT -->
 
-<div class="logo">
+<div class="sidebar glass">
 
-<div class="logoMark">
+<div class="brandBlock">
+
+<div class="brandIcon">
 
 <svg viewBox="0 0 100 100">
 
 <defs>
-<linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+<linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
 <stop offset="0%" stop-color="#ff4fc3"/>
-<stop offset="55%" stop-color="#b44cff"/>
+<stop offset="50%" stop-color="#b44cff"/>
 <stop offset="100%" stop-color="#6c35ff"/>
 </linearGradient>
 </defs>
 
-<path d="M50 15v70"/>
+<path d="M50 12v76"/>
+<path d="M48 20c-9-13-29-9-31 8-12 3-16 20-6 29-7 13 4 28 18 25 6 11 21 7 19-7"/>
+<path d="M52 20c9-13 29-9 31 8 12 3 16 20 6 29 7 13-4 28-18 25-6 11-21 7-19-7"/>
 
-<path d="M49 22c-8-12-27-8-28 7-12 3-15 19-5 27-7 12 3 27 17 24 6 11 19 7 16-6"/>
+<path d="M49 30c-11 0-18 7-19 16"/>
+<path d="M49 52c-13 0-21 9-22 22"/>
+<path d="M51 30c11 0 18 7 19 16"/>
+<path d="M51 52c13 0 21 9 22 22"/>
 
-<path d="M51 22c8-12 27-8 28 7 12 3 15 19 5 27 7 12-3 27-17 24-6 11-19 7-16-6"/>
+<circle cx="25" cy="29" r="4"/>
+<circle cx="29" cy="70" r="4"/>
+<circle cx="75" cy="29" r="4"/>
+<circle cx="71" cy="70" r="4"/>
 
-<path d="M50 32c-10 0-17 6-18 15"/>
-<path d="M50 54c-12 0-20 8-21 20"/>
-
-<path d="M50 32c10 0 17 6 18 15"/>
-<path d="M50 54c12 0 20 8 21 20"/>
+<path d="M31 40l-13-8"/>
+<path d="M32 63l-14 8"/>
+<path d="M69 40l13-8"/>
+<path d="M68 63l14 8"/>
 
 </svg>
 
 </div>
 
-<div class="logoText">
+<div class="brandName">
 Aynı<span>yız</span>
+</div>
 
-<small>
+<div class="brandTag">
 KENDİNİ KEŞFET • İNSANLARI ÇÖZ
-</small>
-
 </div>
 
 </div>
 
-<input class="search" placeholder="Test ara..." />
-
-<div class="nav">
-<button>Giriş Yap</button>
-<button>Kayıt Ol</button>
-</div>
-
-</div>
-
-<div class="layout">
-
-<!-- LEFT -->
-
-<div class="sidebar glass">
+<div class="menu">
 
 <div class="menuItem active">
 <div class="menuIcon">⌂</div>
@@ -826,7 +727,7 @@ Anasayfa
 </div>
 
 <div class="menuItem">
-<div class="menuIcon">✦</div>
+<div class="menuIcon">⚗</div>
 Testler
 </div>
 
@@ -855,33 +756,28 @@ Arkadaşlar
 Ayarlar
 </div>
 
-<div class="premiumBox glass">
-
-<div class="catIcon">
-♛
-</div>
-
-<h3>Sınırsız Test</h3>
-
-<p style="color:#bbb;margin:12px 0">
-Premium’a geç ve tüm testleri aç.
-</p>
-
-<button class="btn">
-Premium
-</button>
-
 </div>
 
 </div>
 
 <!-- CENTER -->
 
-<div>
+<div class="center">
+
+<div class="topbar glass">
+
+<input class="search" placeholder="Test ara...">
+
+<div class="topButtons">
+<button class="btn">Giriş Yap</button>
+<button class="btn">Kayıt Ol</button>
+</div>
+
+</div>
 
 <div class="hero glass">
 
-<div>
+<div class="heroText">
 
 <h1>
 Kendini keşfet.<br>
@@ -889,9 +785,8 @@ Kendini keşfet.<br>
 </h1>
 
 <p>
-Eğlenceli kişilik testleri çöz,
-insanlarla karşılaştır,
-sonuçlarını paylaş.
+Eğlenceli kişilik testleri çöz, insanlarla karşılaştır,
+sonuçlarını paylaş ve yeni bağlantılar kur.
 </p>
 
 <button class="btn">
@@ -902,15 +797,12 @@ Testleri Keşfet
 
 <div class="heroVisual">
 
-<div class="brainOrb">
+<div class="orb">
 
 <svg viewBox="0 0 64 64">
-
 <path d="M31 9v46"/>
 <path d="M31 17c-4-7-15-6-17 2-7 1-10 10-5 15-4 7 2 16 10 15 3 7 13 6 12-3"/>
-
 <path d="M33 17c4-7 15-6 17 2 7 1 10 10 5 15 4 7-2 16-10 15-3 7-13 6-12-3"/>
-
 </svg>
 
 </div>
@@ -918,52 +810,52 @@ Testleri Keşfet
 <div class="float f1">☺</div>
 <div class="float f2">?</div>
 <div class="float f3">♡</div>
-<div class="float f4">✦</div>
+<div class="float f4">⚡</div>
 
 </div>
 
 </div>
 
-<div class="sectionHead">
+<div class="sectionTitle">
 <h2>Kategoriler</h2>
 <span>Tümünü Gör →</span>
 </div>
 
 <div class="categories">
 
-<div class="cat">
-<div class="catIcon">♡</div>
+<div class="category">
+<div class="categoryIcon">♡</div>
 İlişkiler
 </div>
 
-<div class="cat">
-<div class="catIcon">☯</div>
+<div class="category">
+<div class="categoryIcon">☯</div>
 Psikoloji
 </div>
 
-<div class="cat">
-<div class="catIcon">☺</div>
+<div class="category">
+<div class="categoryIcon">☺</div>
 Eğlence
 </div>
 
-<div class="cat">
-<div class="catIcon">☰</div>
+<div class="category">
+<div class="categoryIcon">☰</div>
 Sosyal
 </div>
 
-<div class="cat">
-<div class="catIcon">⚡</div>
-IQ
+<div class="category">
+<div class="categoryIcon">⚡</div>
+IQ & Zeka
 </div>
 
-<div class="cat">
-<div class="catIcon">▣</div>
+<div class="category">
+<div class="categoryIcon">▣</div>
 Kariyer
 </div>
 
 </div>
 
-<div class="sectionHead">
+<div class="sectionTitle">
 <h2>Popüler Testler</h2>
 <span>Tümünü Gör →</span>
 </div>
@@ -972,13 +864,13 @@ Kariyer
 
 <div class="test">
 
-<div class="testImg">
+<div class="testTop">
 <div class="testIcon">☰</div>
 </div>
 
 <div class="testBody">
 
-<b>İnsanlar Seni Nasıl Görüyor?</b>
+<h3>İnsanlar Seni Nasıl Görüyor?</h3>
 
 <p>
 Çevrendeki insanların seni nasıl algıladığını öğren.
@@ -988,7 +880,7 @@ Kariyer
 5,00 TL
 </div>
 
-<button>
+<button class="btn">
 Teste Başla
 </button>
 
@@ -998,13 +890,13 @@ Teste Başla
 
 <div class="test">
 
-<div class="testImg">
+<div class="testTop">
 <div class="testIcon">◉</div>
 </div>
 
 <div class="testBody">
 
-<b>Gizli Karakterin</b>
+<h3>Gizli Karakterin</h3>
 
 <p>
 Bilinçaltındaki gerçek karakterini keşfet.
@@ -1014,7 +906,7 @@ Bilinçaltındaki gerçek karakterini keşfet.
 5,00 TL
 </div>
 
-<button>
+<button class="btn">
 Teste Başla
 </button>
 
@@ -1024,13 +916,13 @@ Teste Başla
 
 <div class="test">
 
-<div class="testImg">
+<div class="testTop">
 <div class="testIcon">♡</div>
 </div>
 
 <div class="testBody">
 
-<b>Flört Tarzın</b>
+<h3>Flört Tarzın</h3>
 
 <p>
 Aşk hayatındaki enerjiyi öğren.
@@ -1040,7 +932,7 @@ Aşk hayatındaki enerjiyi öğren.
 5,00 TL
 </div>
 
-<button>
+<button class="btn">
 Teste Başla
 </button>
 
@@ -1050,13 +942,13 @@ Teste Başla
 
 <div class="test">
 
-<div class="testImg">
+<div class="testTop">
 <div class="testIcon">⚡</div>
 </div>
 
 <div class="testBody">
 
-<b>Sosyal Zeka</b>
+<h3>Sosyal Zeka</h3>
 
 <p>
 İnsanları ne kadar iyi çözdüğünü ölç.
@@ -1066,7 +958,7 @@ Teste Başla
 5,00 TL
 </div>
 
-<button>
+<button class="btn">
 Teste Başla
 </button>
 
@@ -1082,61 +974,38 @@ Teste Başla
 
 <div class="right glass">
 
-<h2 style="margin-bottom:14px">
+<div class="liveTitle">
 Canlı Akış
-</h2>
+</div>
 
-<div class="pop">
-<div class="thumb">☰</div>
+<div class="liveItem">
+<div class="liveAvatar">☰</div>
 
-<div>
-<b>İnsanlar Seni Nasıl Görüyor?</b>
+<div class="liveText">
+<b>Elif yeni test çözdü</b>
 <br>
-<small>12.4K kişi çözdü</small>
+<small>%92 Enerji Kaynağı</small>
 </div>
 </div>
 
-<div class="pop">
-<div class="thumb">◉</div>
+<div class="liveItem">
+<div class="liveAvatar">♡</div>
 
-<div>
-<b>Gizli Karakterin</b>
+<div class="liveText">
+<b>Mert sonuç paylaştı</b>
 <br>
-<small>8.7K kişi çözdü</small>
+<small>7 kişi beğendi</small>
 </div>
 </div>
 
-<div class="pop">
-<div class="thumb">♡</div>
+<div class="liveItem">
+<div class="liveAvatar">⚡</div>
 
-<div>
-<b>Flört Tarzın</b>
+<div class="liveText">
+<b>Ayşe eşleşme buldu</b>
 <br>
-<small>10.1K kişi çözdü</small>
+<small>%87 uyum</small>
 </div>
-</div>
-
-<div class="live">
-
-<h3>Canlı Kullanıcılar</h3>
-
-<div class="liveRow">
-<div class="avatar"></div>
-Elif sonucu paylaştı
-</div>
-
-<div class="liveRow">
-<div class="avatar"></div>
-Mert yeni test çözdü
-</div>
-
-<div class="liveRow">
-<div class="avatar"></div>
-Ayşe %87 çıktı
-</div>
-
-</div>
-
 </div>
 
 </div>
