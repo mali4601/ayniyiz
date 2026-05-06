@@ -4,54 +4,328 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aynıyız</title>
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:radial-gradient(circle at 10% 10%,rgba(255,47,159,.22),transparent 28%),radial-gradient(circle at 90% 20%,rgba(122,53,255,.22),transparent 32%),linear-gradient(180deg,#10051c,#060812 80%);color:white;min-height:100vh;overflow-x:hidden}
-.app{max-width:1280px;margin:auto;padding:22px}
-.glass{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);border-radius:28px;backdrop-filter:blur(18px);box-shadow:0 25px 80px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.10)}
-.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
-.logoArea{width:360px}
-.logoArea img{width:100%;display:block;filter:drop-shadow(0 0 18px rgba(255,47,159,.35))}
-.logoTag{font-size:13px;font-weight:900;letter-spacing:1.8px;color:#fff;text-shadow:0 0 10px rgba(255,255,255,.45),0 0 18px rgba(255,47,159,.45);text-align:center;margin-top:-18px}
-.search{width:330px;padding:15px 18px;border-radius:16px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.07);color:white;outline:none}
-.nav{display:flex;gap:10px}
-button{border:0;border-radius:16px;padding:15px 20px;color:white;font-weight:900;cursor:pointer;background:linear-gradient(135deg,#ff2f9f,#7a35ff);box-shadow:0 0 26px rgba(255,47,159,.32)}
-.nav button:first-child{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)}
-.layout{display:grid;grid-template-columns:220px 1fr 300px;gap:18px}
-.sidebar{padding:18px;height:calc(100vh - 120px);position:sticky;top:22px}
-.menuItem{display:flex;align-items:center;gap:12px;padding:14px;border-radius:16px;margin-bottom:8px;color:#ddd}
-.menuItem.active{background:linear-gradient(135deg,rgba(122,53,255,.55),rgba(255,47,159,.55));box-shadow:0 0 24px rgba(255,47,159,.22)}
-.menuIcon{width:36px;height:36px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,#ff2f9f,#7a35ff);box-shadow:0 0 18px rgba(255,47,159,.28)}
-.hero{padding:38px;min-height:340px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:20px;overflow:hidden;position:relative}
-.hero h1{font-size:60px;line-height:1;letter-spacing:-2px;margin-bottom:20px}
-.hero h1 span{color:#ff63c2;text-shadow:0 0 25px rgba(255,47,159,.65)}
-.hero p{color:#cfc7dd;font-size:18px;line-height:1.6;max-width:520px;margin-bottom:24px}
-.heroVisual{display:grid;place-items:center}
-.heroVisual img{width:100%;max-width:360px;filter:drop-shadow(0 0 35px rgba(255,47,159,.35))}
-.sectionHead{display:flex;align-items:center;justify-content:space-between;margin:24px 0 14px}
-.sectionHead span{color:#ff71cc}
-.categories{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
-.cat{padding:18px 10px;text-align:center;border-radius:20px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)}
-.catIcon{width:54px;height:54px;margin:0 auto 10px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(135deg,#ff2f9f,#7a35ff);box-shadow:0 0 24px rgba(255,47,159,.28);font-size:25px}
-.tests{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.test{overflow:hidden;border-radius:24px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)}
-.testImg{height:135px;display:grid;place-items:center;background:radial-gradient(circle at 40% 30%,rgba(255,95,189,.9),rgba(122,53,255,.45) 50%,rgba(10,8,18,.95) 80%);font-size:54px}
-.testBody{padding:16px}
-.testBody h3{margin-bottom:8px}
-.testBody p{color:#c1b7ce;font-size:14px;line-height:1.5}
-.price{margin:14px 0;color:#ff6dc9;font-size:24px;font-weight:900}
-.right{padding:18px}
-.liveItem{display:flex;gap:12px;align-items:center;padding:13px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10);margin-bottom:12px}
-.avatar{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(135deg,#ff2f9f,#7a35ff)}
+
+body{
+  font-family:Arial,sans-serif;
+  background:
+    radial-gradient(circle at 10% 10%,rgba(255,47,159,.22),transparent 28%),
+    radial-gradient(circle at 90% 20%,rgba(122,53,255,.22),transparent 32%),
+    linear-gradient(180deg,#10051c,#060812 80%);
+  color:white;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:42px 42px;
+  opacity:.35;
+  pointer-events:none;
+}
+
+.app{
+  max-width:1280px;
+  margin:auto;
+  padding:22px;
+  position:relative;
+  z-index:1;
+}
+
+.glass{
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:28px;
+  backdrop-filter:blur(18px);
+  box-shadow:0 25px 80px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.10);
+}
+
+.top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:22px;
+}
+
+.logoArea{
+  width:360px;
+  max-width:42vw;
+}
+
+.logoArea img{
+  width:100%;
+  display:block;
+  filter:drop-shadow(0 0 18px rgba(255,47,159,.35));
+}
+
+.search{
+  width:330px;
+  padding:15px 18px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.07);
+  color:white;
+  outline:none;
+}
+
+.nav{
+  display:flex;
+  gap:10px;
+}
+
+button{
+  border:0;
+  border-radius:16px;
+  padding:15px 20px;
+  color:white;
+  font-weight:900;
+  cursor:pointer;
+  background:linear-gradient(135deg,#ff2f9f,#7a35ff);
+  box-shadow:0 0 26px rgba(255,47,159,.32);
+}
+
+.nav button:first-child{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);
+}
+
+.layout{
+  display:grid;
+  grid-template-columns:220px 1fr 300px;
+  gap:18px;
+}
+
+.sidebar{
+  padding:18px;
+  height:calc(100vh - 120px);
+  position:sticky;
+  top:22px;
+}
+
+.menuItem{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:14px;
+  border-radius:16px;
+  margin-bottom:8px;
+  color:#ddd;
+}
+
+.menuItem.active{
+  background:linear-gradient(135deg,rgba(122,53,255,.55),rgba(255,47,159,.55));
+  box-shadow:0 0 24px rgba(255,47,159,.22);
+}
+
+.menuIcon{
+  width:36px;
+  height:36px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,#ff2f9f,#7a35ff);
+  box-shadow:0 0 18px rgba(255,47,159,.28);
+}
+
+.hero{
+  padding:38px;
+  min-height:340px;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  align-items:center;
+  gap:20px;
+  overflow:hidden;
+  position:relative;
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  right:-90px;
+  top:-90px;
+  width:420px;
+  height:420px;
+  background:rgba(255,47,159,.15);
+  filter:blur(90px);
+}
+
+.hero h1{
+  position:relative;
+  z-index:2;
+  font-size:60px;
+  line-height:1;
+  letter-spacing:-2px;
+  margin-bottom:20px;
+}
+
+.hero h1 span{
+  color:#ff63c2;
+  text-shadow:0 0 25px rgba(255,47,159,.65);
+}
+
+.hero p{
+  position:relative;
+  z-index:2;
+  color:#cfc7dd;
+  font-size:18px;
+  line-height:1.6;
+  max-width:520px;
+  margin-bottom:24px;
+}
+
+.heroVisual{
+  position:relative;
+  z-index:2;
+  display:grid;
+  place-items:center;
+}
+
+.heroVisual img{
+  width:100%;
+  max-width:360px;
+  border-radius:28px;
+  filter:drop-shadow(0 0 35px rgba(255,47,159,.35));
+}
+
+.sectionHead{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:24px 0 14px;
+}
+
+.sectionHead span{
+  color:#ff71cc;
+}
+
+.categories{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:12px;
+}
+
+.cat{
+  padding:18px 10px;
+  text-align:center;
+  border-radius:20px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.catIcon{
+  width:54px;
+  height:54px;
+  margin:0 auto 10px;
+  border-radius:18px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,#ff2f9f,#7a35ff);
+  box-shadow:0 0 24px rgba(255,47,159,.28);
+  font-size:25px;
+}
+
+.tests{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+
+.test{
+  overflow:hidden;
+  border-radius:24px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.testImg{
+  height:135px;
+  display:grid;
+  place-items:center;
+  background:radial-gradient(circle at 40% 30%,rgba(255,95,189,.9),rgba(122,53,255,.45) 50%,rgba(10,8,18,.95) 80%);
+  font-size:54px;
+}
+
+.testBody{
+  padding:16px;
+}
+
+.testBody h3{
+  margin-bottom:8px;
+}
+
+.testBody p{
+  color:#c1b7ce;
+  font-size:14px;
+  line-height:1.5;
+}
+
+.price{
+  margin:14px 0;
+  color:#ff6dc9;
+  font-size:24px;
+  font-weight:900;
+}
+
+.right{
+  padding:18px;
+}
+
+.liveItem{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  padding:13px;
+  border-radius:18px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.10);
+  margin-bottom:12px;
+}
+
+.avatar{
+  width:48px;
+  height:48px;
+  border-radius:16px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,#ff2f9f,#7a35ff);
+}
+
 small{color:#bbb}
-@media(max-width:1050px){.layout{grid-template-columns:1fr}.sidebar,.right,.search{display:none}.logoArea{width:260px}.hero{grid-template-columns:1fr}.categories{grid-template-columns:repeat(3,1fr)}.tests{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){.app{padding:14px}.logoArea{width:190px}.logoTag{font-size:9px;margin-top:-8px}.nav button{padding:11px 12px}.hero{padding:26px}.hero h1{font-size:38px}.categories{grid-template-columns:repeat(2,1fr)}.tests{grid-template-columns:1fr}}
+
+@media(max-width:1050px){
+  .layout{grid-template-columns:1fr}
+  .sidebar,.right,.search{display:none}
+  .logoArea{max-width:260px;width:260px}
+  .hero{grid-template-columns:1fr}
+  .categories{grid-template-columns:repeat(3,1fr)}
+  .tests{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:600px){
+  .app{padding:14px}
+  .top{gap:10px}
+  .logoArea{width:190px}
+  .nav button{padding:11px 12px}
+  .hero{padding:26px}
+  .hero h1{font-size:38px}
+  .categories{grid-template-columns:repeat(2,1fr)}
+  .tests{grid-template-columns:1fr}
+}
 </style>
 </head>
+
 <body>
+
 <div class="app">
-  <div class="top">
-    <div>
+
+  div>
       <div class="logoArea"><img src="logo.png" alt="Aynıyız Logo"></div>
       <div class="logoTag">Kendini Keşfet - İnsanları Çöz - Eşini Bul</div>
     </div>
@@ -59,7 +333,16 @@ small{color:#bbb}
     <div class="nav"><button>Giriş Yap</button><button>Kayıt Ol</button></div>
   </div>
 
+    <input class="search" placeholder="Test ara...">
+
+    <div class="nav">
+      <button>Giriş Yap</button>
+      <button>Kayıt Ol</button>
+    </div>
+  </div>
+
   <div class="layout">
+
     <aside class="sidebar glass">
       <div class="menuItem active"><div class="menuIcon">⌂</div>Anasayfa</div>
       <div class="menuItem"><div class="menuIcon">⚗</div>Testler</div>
@@ -71,16 +354,24 @@ small{color:#bbb}
     </aside>
 
     <main>
+
       <section class="hero glass">
         <div>
           <h1>Kendini keşfet.<br><span>İnsanları çöz.</span></h1>
           <p>Eğlenceli kişilik testleri çöz, insanlarla karşılaştır, sonuçlarını paylaş ve eşini bul.</p>
           <button>Testleri Keşfet</button>
         </div>
-        <div class="heroVisual"><img src="logo-yazisiz.png" alt="Aynıyız Beyin Logo"></div>
+
+        <div class="heroVisual">
+          <img src="logo.png" alt="Aynıyız Beyin Logo">
+        </div>
       </section>
 
-      <div class="sectionHead"><h2>Kategoriler</h2><span>Tümünü Gör →</span></div>
+      <div class="sectionHead">
+        <h2>Kategoriler</h2>
+        <span>Tümünü Gör →</span>
+      </div>
+
       <div class="categories">
         <div class="cat"><div class="catIcon">♡</div>İlişkiler</div>
         <div class="cat"><div class="catIcon">☯</div>Psikoloji</div>
@@ -90,22 +381,79 @@ small{color:#bbb}
         <div class="cat"><div class="catIcon">▣</div>Kariyer</div>
       </div>
 
-      <div class="sectionHead"><h2>Popüler Testler</h2><span>Tümünü Gör →</span></div>
-      <div class="tests">
-        <div class="test"><div class="testImg">☰</div><div class="testBody"><h3>İnsanlar Seni Nasıl Görüyor?</h3><p>Çevrendeki insanların seni nasıl algıladığını öğren.</p><div class="price">5,00 TL</div><button>Teste Başla</button></div></div>
-        <div class="test"><div class="testImg">◉</div><div class="testBody"><h3>Gizli Karakterin</h3><p>Bilinçaltındaki gerçek karakterini keşfet.</p><div class="price">5,00 TL</div><button>Teste Başla</button></div></div>
-        <div class="test"><div class="testImg">♡</div><div class="testBody"><h3>Flört Tarzın</h3><p>Aşk hayatındaki enerjini öğren.</p><div class="price">5,00 TL</div><button>Teste Başla</button></div></div>
-        <div class="test"><div class="testImg">⚡</div><div class="testBody"><h3>Sosyal Zeka</h3><p>İnsanları ne kadar iyi çözdüğünü ölç.</p><div class="price">5,00 TL</div><button>Teste Başla</button></div></div>
+      <div class="sectionHead">
+        <h2>Popüler Testler</h2>
+        <span>Tümünü Gör →</span>
       </div>
+
+      <div class="tests">
+
+        <div class="test">
+          <div class="testImg">☰</div>
+          <div class="testBody">
+            <h3>İnsanlar Seni Nasıl Görüyor?</h3>
+            <p>Çevrendeki insanların seni nasıl algıladığını öğren.</p>
+            <div class="price">5,00 TL</div>
+            <button>Teste Başla</button>
+          </div>
+        </div>
+
+        <div class="test">
+          <div class="testImg">◉</div>
+          <div class="testBody">
+            <h3>Gizli Karakterin</h3>
+            <p>Bilinçaltındaki gerçek karakterini keşfet.</p>
+            <div class="price">5,00 TL</div>
+            <button>Teste Başla</button>
+          </div>
+        </div>
+
+        <div class="test">
+          <div class="testImg">♡</div>
+          <div class="testBody">
+            <h3>Flört Tarzın</h3>
+            <p>Aşk hayatındaki enerjini öğren.</p>
+            <div class="price">5,00 TL</div>
+            <button>Teste Başla</button>
+          </div>
+        </div>
+
+        <div class="test">
+          <div class="testImg">⚡</div>
+          <div class="testBody">
+            <h3>Sosyal Zeka</h3>
+            <p>İnsanları ne kadar iyi çözdüğünü ölç.</p>
+            <div class="price">5,00 TL</div>
+            <button>Teste Başla</button>
+          </div>
+        </div>
+
+      </div>
+
     </main>
 
     <aside class="right glass">
       <h2 style="margin-bottom:16px">Canlı Akış</h2>
-      <div class="liveItem"><div class="avatar">♡</div><div><b>Elif yeni test çözdü</b><br><small>%92 Enerji Kaynağı</small></div></div>
-      <div class="liveItem"><div class="avatar">⚡</div><div><b>Mert sonuç paylaştı</b><br><small>7 kişi beğendi</small></div></div>
-      <div class="liveItem"><div class="avatar">☰</div><div><b>Ayşe eşleşme buldu</b><br><small>%87 uyum</small></div></div>
+
+      <div class="liveItem">
+        <div class="avatar">♡</div>
+        <div><b>Elif yeni test çözdü</b><br><small>%92 Enerji Kaynağı</small></div>
+      </div>
+
+      <div class="liveItem">
+        <div class="avatar">⚡</div>
+        <div><b>Mert sonuç paylaştı</b><br><small>7 kişi beğendi</small></div>
+      </div>
+
+      <div class="liveItem">
+        <div class="avatar">☰</div>
+        <div><b>Ayşe eşleşme buldu</b><br><small>%87 uyum</small></div>
+      </div>
     </aside>
+
   </div>
+
 </div>
+
 </body>
 </html>
