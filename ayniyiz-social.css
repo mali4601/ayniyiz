@@ -1,0 +1,21 @@
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;min-height:100vh;color:#fff;background:radial-gradient(circle at top left,#3d0b4f 0%,transparent 30%),radial-gradient(circle at top right,#27114f 0%,transparent 30%),#070812;overflow-x:hidden}
+.app{max-width:1180px;margin:auto;padding:20px}
+.glass{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(18px);border-radius:28px;box-shadow:0 0 35px rgba(255,47,159,.12)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:20px;flex-wrap:wrap}
+.logo{width:170px;filter:drop-shadow(0 0 18px rgba(255,47,159,.35))}
+.nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.nav a,.nav button,button{border:0;border-radius:14px;padding:12px 16px;color:#fff;font-weight:900;cursor:pointer;text-decoration:none;background:linear-gradient(135deg,#ff2f9f,#7a35ff);box-shadow:0 0 24px rgba(255,47,159,.25)}
+.nav a.secondary,button.secondary{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12)}
+.page{padding:28px}h1{font-size:42px;margin-bottom:10px}p{color:#cfc7dd;line-height:1.6}
+.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}.card{padding:22px}
+input,select,textarea{width:100%;padding:14px;border-radius:16px;margin:8px 0 14px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.08);color:white;outline:none}
+option{background:#14091f}label{color:#f1d8ff;font-weight:800;font-size:14px}.hidden{display:none!important}
+.userLine{color:#ff7bd3;font-weight:900;padding:12px 16px;background:rgba(255,255,255,.07);border-radius:14px}
+.list{display:grid;gap:14px;margin-top:18px}.friend{display:flex;align-items:center;gap:14px;padding:15px;border-radius:20px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);cursor:pointer}
+.avatar{width:62px;height:62px;border-radius:50%;object-fit:cover;background:linear-gradient(135deg,#ff2f9f,#7a35ff);display:grid;place-items:center;font-size:22px;font-weight:900;flex:0 0 auto}
+.friendInfo{flex:1}.badge{display:inline-block;margin-top:6px;color:#ff8bd7;font-weight:900;font-size:13px}.score{font-size:28px;font-weight:900;color:#ff6dc9;text-shadow:0 0 18px rgba(255,47,159,.35)}
+.chatBox{margin-top:16px;padding:16px;min-height:220px;border-radius:22px;background:rgba(0,0,0,.22)}.msg{padding:11px 13px;border-radius:15px;background:rgba(255,255,255,.08);margin-bottom:10px}
+.premiumBox{padding:24px;text-align:center;border-radius:28px;background:linear-gradient(135deg,rgba(255,47,159,.18),rgba(122,53,255,.18));border:1px solid rgba(255,255,255,.14)}
+@media(max-width:850px){.grid{grid-template-columns:1fr}.logo{width:130px}h1{font-size:32px}}
