@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayarlar | Aynıyız</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="authModal" id="authModal">
+  <div class="authCard glass">
+    <h2>Giriş / Kayıt</h2>
+    <p>Yeni üyeye 4 kredi hediye. Giriş yaptıktan sonra kaldığın yerden devam edeceksin.</p>
+    <input id="modalEmail" type="email" placeholder="E-mail">
+    <input id="modalPassword" type="password" placeholder="Şifre">
+    <button onclick="loginUser()">Giriş Yap</button>
+    <button onclick="registerUser()">Kayıt Ol</button>
+    <button onclick="loginWithGoogle()" style="background:rgba(255,255,255,.09)">Google ile Devam Et</button>
+    <button onclick="closeAuthModal()" style="background:rgba(255,255,255,.09)">Vazgeç</button>
+  </div>
+</div>
+
+<div class="app">
+
+<div class="top">
+  <img src="logo.png" class="logo" alt="Aynıyız">
+  <input class="search" placeholder="Test ara...">
+  <div class="nav" id="userBox">
+    <div class="creditBadge" onclick="location.href='kredi.html'">⚡ Kredin: 0</div>
+    <input type="email" id="email" placeholder="E-mail">
+    <input type="password" id="password" placeholder="Şifre">
+    <button onclick="loginUser()">Giriş Yap</button>
+    <button onclick="registerUser()">Kayıt Ol</button>
+    <button onclick="loginWithGoogle()" style="background:rgba(255,255,255,.09)">Google</button>
+  </div>
+</div>
+
+<div class="layout two">
+<aside class="sidebar glass"><div class="menuItem " onclick="location.href='index.html'"><div class="menuIcon">⌂</div>Anasayfa</div>
+<div class="menuItem " onclick="location.href='testler.html'"><div class="menuIcon">⚗</div>Testler</div>
+<div class="menuItem " onclick="location.href='kategoriler.html'"><div class="menuIcon">♡</div>Kategoriler</div>
+<div class="menuItem " onclick="location.href='populer.html'"><div class="menuIcon">⚡</div>Popüler</div>
+<div class="menuItem " onclick="location.href='kredi.html'"><div class="menuIcon">✦</div>Kredi Yükle</div>
+<div class="menuItem " onclick="location.href='arkadaslar.html'"><div class="menuIcon">☰</div>Arkadaşlar</div>
+<div class="menuItem active" onclick="location.href='ayarlar.html'"><div class="menuIcon">⚙</div>Ayarlar</div></aside>
+<main>
+<section class="pageTitle glass">
+  <h1>Ayarlar</h1>
+  <p>Profil bilgilerini doldur. Bu bilgiler arkadaşlar, eşleşme ve güvenlik sisteminde kullanılacak.</p>
+</section>
+
+<div id="settingsLoginGate" class="notice glass">
+  <h2>Ayarlar için giriş yapmalısın</h2>
+  <p>Profil bilgilerini kaydetmek için önce giriş yap veya Google ile devam et.</p>
+  <button onclick="openAuthModal()">Giriş / Kayıt Aç</button>
+</div>
+
+<div id="settingsFormBox" class="notice glass" style="display:none">
+  <h2>Profil Ayarları</h2>
+
+  <form id="profileSettingsForm" onsubmit="event.preventDefault(); saveProfileSettings();">
+    <label>Ad / Rumuz</label>
+    <input id="nickname" placeholder="Örn: Mehmet Ali" style="width:100%;margin:8px 0 12px;padding:14px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:white">
+
+    <label>Doğum Tarihi</label>
+    <input id="birthDate" type="date" style="width:100%;margin:8px 0 12px;padding:14px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:white">
+
+    <label>Cinsiyet Tercihi</label>
+    <select id="gender" style="width:100%;margin:8px 0 12px;padding:14px;border-radius:14px;background:#171122;border:1px solid rgba(255,255,255,.12);color:white">
+      <option value="">Belirtmek istemiyorum</option>
+      <option value="kadın">Kadın</option>
+      <option value="erkek">Erkek</option>
+      <option value="diğer">Diğer</option>
+    </select>
+
+    <label>Şehir</label>
+    <input id="city" placeholder="Örn: Kahramanmaraş" style="width:100%;margin:8px 0 12px;padding:14px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:white">
+
+    <label>Kısa Bio</label>
+    <textarea id="bio" placeholder="Kendini kısa anlat..." style="width:100%;min-height:90px;margin:8px 0 12px;padding:14px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:white"></textarea>
+
+    <label>İlgi Alanları</label>
+    <input id="interests" placeholder="Müzik, teknoloji, spor, kitap..." style="width:100%;margin:8px 0 12px;padding:14px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:white">
+
+    <label>Profil Fotoğrafı Linki</label>
+    <input id="photoURL" placeholder="https://..." style="width:100%;margin:8px 0 12px;padding:14px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:white">
+
+    <label>Profil Gizliliği</label>
+    <select id="privacy" style="width:100%;margin:8px 0 12px;padding:14px;border-radius:14px;background:#171122;border:1px solid rgba(255,255,255,.12);color:white">
+      <option value="public">Herkes görebilir</option>
+      <option value="followers">Sadece takipçiler</option>
+      <option value="private">Gizli profil</option>
+    </select>
+
+    <label>Mesaj Alma Tercihi</label>
+    <select id="messagePreference" style="width:100%;margin:8px 0 12px;padding:14px;border-radius:14px;background:#171122;border:1px solid rgba(255,255,255,.12);color:white">
+      <option value="everyone">Herkes mesaj atabilir</option>
+      <option value="followers">Sadece takip ettiklerim</option>
+      <option value="none">Kimse mesaj atamasın</option>
+    </select>
+
+    <label>Bildirim Tercihi</label>
+    <select id="notificationPreference" style="width:100%;margin:8px 0 18px;padding:14px;border-radius:14px;background:#171122;border:1px solid rgba(255,255,255,.12);color:white">
+      <option value="on">Bildirimler açık</option>
+      <option value="off">Bildirimler kapalı</option>
+    </select>
+
+    <button type="submit">Ayarları Kaydet</button>
+  </form>
+</div>
+</main>
+</div>
+</div>
+<script type="module" src="app.js"></script>
+</body>
+</html>
