@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arkadaşlar | Aynıyız</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="authModal" id="authModal">
+  <div class="authCard glass">
+    <h2>Giriş / Kayıt</h2>
+    <p>Google ile hızlı giriş yapabilir veya e-posta ile devam edebilirsin.</p>
+    <button onclick="loginWithGoogle()" style="width:100%;margin-bottom:12px;background:rgba(255,255,255,.09)">Google ile Devam Et</button>
+    <input id="modalEmail" type="email" placeholder="E-mail">
+    <input id="modalPassword" type="password" placeholder="Şifre">
+    <button onclick="loginUser()">Giriş Yap</button>
+    <button onclick="registerUser()">Kayıt Ol</button>
+    <button onclick="closeAuthModal()" style="background:rgba(255,255,255,.09)">Vazgeç</button>
+  </div>
+</div>
+
+<div class="app">
+
+<div class="top">
+  <img src="logo.png" class="logo" alt="Aynıyız" onclick="location.href='index.html'" style="cursor:pointer">
+  <input class="search" placeholder="Test ara...">
+  <div class="nav" id="userBox">
+    <div class="creditBadge" onclick="location.href='kredi.html'">⚡ Kredin: 0</div>
+    <button onclick="loginWithGoogle()" style="background:rgba(255,255,255,.09)">Google ile Devam Et</button>
+    <input type="email" id="email" placeholder="E-mail">
+    <input type="password" id="password" placeholder="Şifre">
+    <button onclick="loginUser()">Giriş Yap</button>
+    <button onclick="registerUser()">Kayıt Ol</button>
+  </div>
+</div>
+
+<div class="layout two">
+<aside class="sidebar glass"><div class="menuItem " onclick="location.href='index.html'"><div class="menuIcon">⌂</div>Anasayfa</div>
+<div class="menuItem " onclick="location.href='testler.html'"><div class="menuIcon">⚗</div>Testler</div>
+<div class="menuItem " onclick="location.href='kategoriler.html'"><div class="menuIcon">♡</div>Kategoriler</div>
+<div class="menuItem " onclick="location.href='populer.html'"><div class="menuIcon">⚡</div>Popüler</div>
+<div class="menuItem " onclick="location.href='kredi.html'"><div class="menuIcon">✦</div>Kredi Yükle</div>
+<div class="menuItem active" onclick="location.href='arkadaslar.html'"><div class="menuIcon">☰</div>Arkadaşlar</div>
+<div class="menuItem " onclick="location.href='ayarlar.html'"><div class="menuIcon">⚙</div>Ayarlar</div></aside>
+<main>
+<section class="pageTitle glass">
+  <h1>Arkadaşlar</h1>
+  <p>Google ile giriş yaptıktan sonra arkadaş panelin açılır.</p>
+</section>
+
+<div id="friendLoginGate" class="notice glass">
+  <h2>Arkadaşlar alanı üyelik gerektirir</h2>
+  <p>Google ile hızlı giriş yapabilirsin.</p>
+  <button onclick="loginWithGoogle()">Google ile Devam Et</button>
+  <button onclick="openAuthModal()" style="background:rgba(255,255,255,.09)">E-posta ile Giriş</button>
+</div>
+
+<div id="friendContent" class="notice glass" style="display:none">
+  <h2>Arkadaşlar Paneli</h2>
+  <p>Takip, sohbet, engelle, beğen ve favori özellikleri sosyal modülde gerçek veriye bağlanacak.</p>
+  <div class="testGrid">
+    <div class="test"><div class="testBody"><h3>🌙 Elif K.</h3><p>Son aktif: 5 dk önce<br>Aura: Parlak Enerji</p><div class="resultActions"><button onclick="friendAction('Takip Et','Elif K.')">Takip Et</button><button onclick="friendAction('Sohbet Et','Elif K.')">Sohbet Et</button><button onclick="friendAction('Favori','Elif K.')">Favori</button><button onclick="friendAction('Engelle','Elif K.')" style="background:rgba(255,255,255,.09)">Engelle</button></div></div></div>
+  </div>
+</div>
+</main>
+</div>
+</div>
+<script type="module" src="app.js"></script>
+</body>
+</html>
